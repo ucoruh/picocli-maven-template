@@ -5,16 +5,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<!-- The Basics -->
-	<groupId>com.ucoruh.calculator</groupId>
-	<artifactId>calculator-app</artifactId>
+	<groupId>com.ucoruh.picocli</groupId>
+	<artifactId>picocli-app</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<!-- More Project Information -->
-	<name>calculator-app</name>
-	<url>https://github.com/ucoruh/eclipse-java-maven-template</url>
+	<name>PicoCliApp</name>
+	<url>https://github.com/ucoruh/picocli-maven-template</url>
 	<scm>
-		<url>https://github.com/ucoruh/eclipse-java-maven-template</url>
+		<url>https://github.com/ucoruh/picocli-maven-template</url>
 	</scm>
 	<inceptionYear>2023</inceptionYear>
 	<developers>
@@ -63,7 +63,7 @@
 	<!-- Environment Settings -->
 	<issueManagement>
 		<system>Github</system>
-		<url>https://github.com/ucoruh/eclipse-java-maven-template</url>
+		<url>https://github.com/ucoruh/picocli-maven-template</url>
 	</issueManagement>
 	<ciManagement>
 		<system>Github</system>
@@ -76,25 +76,25 @@
 				<sendOnWarning>true</sendOnWarning>
 			</notifier>
 		</notifiers>
-		<url>https://github.com/ucoruh/eclipse-java-maven-template</url>
+		<url>https://github.com/ucoruh/picocli-maven-template</url>
 	</ciManagement>
 	<repositories>
 		<repository>
-			<id>eclipse-java-maven-template</id>
-			<name>eclipse-java-maven-template</name>
-			<url>https://github.com/ucoruh/eclipse-java-maven-template</url>
+			<id>picocli-maven-template</id>
+			<name>picocli-maven-template</name>
+			<url>https://github.com/ucoruh/picocli-maven-template</url>
 		</repository>
 	</repositories>
 	<distributionManagement>
 		<site>
-			<name>https://github.com/ucoruh/eclipse-java-maven-template</name>
-			<id>eclipse-java-maven-template</id>
+			<name>https://github.com/ucoruh/picocli-maven-template</name>
+			<id>picocli-maven-template</id>
 		</site>
-		<downloadUrl>https://github.com/ucoruh/eclipse-java-maven-template</downloadUrl>
+		<downloadUrl>https://github.com/ucoruh/picocli-maven-template</downloadUrl>
 		<repository>
 			<id>eclipse-java-maven-template</id>
-			<name>eclipse-java-maven-template</name>
-			<url>https://github.com/ucoruh/eclipse-java-maven-template</url>
+			<name>picocli-maven-template</name>
+			<url>https://github.com/ucoruh/picocli-maven-template</url>
 		</repository>
 	</distributionManagement>
 	<properties>
@@ -128,6 +128,50 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli</artifactId>
+			<version>4.7.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/info.picocli/picocli-jansi-graalvm -->
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli-jansi-graalvm</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>7.0.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.el</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<!-- Mockito Core dependency -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>4.5.1</version> <!-- Replace with the latest version
+			available -->
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -145,12 +189,11 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<includes>
-						<include>**/CalculatorAppTest.java</include>
-						<include>**/CalculatorTest.java</include>
+						<include>**/**Test.java</include>
 					</includes>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -171,57 +214,58 @@
 				</executions>
 			</plugin>
 
-<!--			<plugin>-->
-<!--				<groupId>org.jacoco</groupId>-->
-<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
-<!--				<version>0.8.7</version>-->
-<!--				<executions>-->
-<!--					<execution>						-->
-<!--						<id>prepare-agent</id>-->
-<!--						<goals>-->
-<!--							<goal>prepare-agent</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<destFile>-->
-<!--								${project.build.directory}/jacoco/jacoco-ut.exec</destFile>-->
-<!--							<propertyName>surefireArgLine</propertyName>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--					<execution>-->
-<!--						<id>report</id>-->
-<!--						<phase>test</phase>-->
-<!--						<goals>-->
-<!--							<goal>report</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<dataFile>-->
-<!--								${project.build.directory}/jacoco/jacoco-ut.exec</dataFile>-->
-<!--							<outputDirectory>-->
-<!--								${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--					<execution>-->
-<!--						<id>jacoco-check</id>-->
-<!--						<goals>-->
-<!--							<goal>check</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<rules>-->
-<!--								<rule>-->
-<!--									<element>PACKAGE</element>-->
-<!--									<limits>-->
-<!--										<limit>-->
-<!--											<counter>LINE</counter>-->
-<!--											<value>COVEREDRATIO</value>-->
-<!--											<minimum>0.100</minimum>-->
-<!--										</limit>-->
-<!--									</limits>-->
-<!--								</rule>-->
-<!--							</rules>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
+			<!--			<plugin>-->
+			<!--				<groupId>org.jacoco</groupId>-->
+			<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
+			<!--				<version>0.8.7</version>-->
+			<!--				<executions>-->
+			<!--					<execution>						-->
+			<!--						<id>prepare-agent</id>-->
+			<!--						<goals>-->
+			<!--							<goal>prepare-agent</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<destFile>-->
+			<!--								${project.build.directory}/jacoco/jacoco-ut.exec</destFile>-->
+			<!--							<propertyName>surefireArgLine</propertyName>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--					<execution>-->
+			<!--						<id>report</id>-->
+			<!--						<phase>test</phase>-->
+			<!--						<goals>-->
+			<!--							<goal>report</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<dataFile>-->
+			<!--								${project.build.directory}/jacoco/jacoco-ut.exec</dataFile>-->
+			<!--							<outputDirectory>-->
+			<!--
+			${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--					<execution>-->
+			<!--						<id>jacoco-check</id>-->
+			<!--						<goals>-->
+			<!--							<goal>check</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<rules>-->
+			<!--								<rule>-->
+			<!--									<element>PACKAGE</element>-->
+			<!--									<limits>-->
+			<!--										<limit>-->
+			<!--											<counter>LINE</counter>-->
+			<!--											<value>COVEREDRATIO</value>-->
+			<!--											<minimum>0.100</minimum>-->
+			<!--										</limit>-->
+			<!--									</limits>-->
+			<!--								</rule>-->
+			<!--							</rules>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--				</executions>-->
+			<!--			</plugin>-->
 
 
 			<plugin>
@@ -249,8 +293,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>
-										com.ucoruh.calculator.CalculatorApp</mainClass>
+									<mainClass>com.ucoruh.picocli.PicoCliApp</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

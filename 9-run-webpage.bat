@@ -2,7 +2,7 @@
 @setlocal enableextensions
 @cd /d "%~dp0"
 
-cd calculator-app
+cd picocli-maven-template
 
 echo Run Web Site
 echo to Exit Use CTRL+Z CTRL+C

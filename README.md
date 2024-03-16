@@ -1,6 +1,20 @@
-# eclipse-java-maven-template
+# picocli-maven-template
 
 # Overview
+
+![](assets/2024-03-16-10-11-20-image.png)
+
+This example show basic PicoCLI usage with Maven Template, https://picocli.info/
+
+![](assets/2024-03-16-10-08-03-image.png)
+
+![](assets/2024-03-16-10-08-52-image.png)
+
+![](assets/2024-03-16-10-11-49-image.png)
+
+----
+
+## Pre-Requirements
 
 You will generate eclipse maven project with Junit4 from CLI and. Also you will generate jar and then you will run your application. For more information you can check examples [Maven – Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) and [TheNEXUS | A Community Project](https://books.sonatype.com/mvnref-book/reference/index.html)
 
@@ -439,7 +453,7 @@ You can use gitextension to commit your work, check if you get any error than re
 ## Creating a Project
 
 ```bash
-mvn archetype:generate -DgroupId=com.ucoruh.calculator -DartifactId=calculator-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.ucoruh.calculator -DartifactId=picocli-maven-template -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
 ### Import Project to Eclipse
@@ -700,12 +714,12 @@ public class CalculatorAppTest {
     <modelVersion>4.0.0</modelVersion>
     <!-- The Basics -->
     <groupId>com.ucoruh.calculator</groupId>
-    <artifactId>calculator-app</artifactId>
+    <artifactId>picocli-maven-template</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <!-- More Project Information -->
-    <name>calculator-app</name>
+    <name>picocli-maven-template</name>
     <url>https://github.com/ucoruh/eclipse-java-maven-template</url>
     <scm>
         <url>https://github.com/ucoruh/eclipse-java-maven-template</url>
@@ -980,13 +994,13 @@ mvn clean test site package
 You can run application by specify the Main function
 
 ```bash
-java -cp calculator-app-1.0-SNAPSHOT.jar com.ucoruh.calculator.CalculatorApp
+java -cp picocli-maven-template-1.0-SNAPSHOT.jar com.ucoruh.calculator.CalculatorApp
 ```
 
 Output
 
 ```bash
-C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\calculator-app\target>java -cp calculator-app-1.0-SNAPSHOT.jar com.ucoruh.calculator.CalculatorApp
+C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\picocli-maven-template\target>java -cp picocli-maven-template-1.0-SNAPSHOT.jar com.ucoruh.calculator.CalculatorApp
 Hello World!
 ```
 
@@ -999,7 +1013,7 @@ reportgenerator "-reports:target/site/jacoco/jacoco.xml" "-sourcedirs:src/main/j
 Output
 
 ```bash
-C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\calculator-app>reportgenerator "-reports:target/site/jacoco/jacoco.xml" "-sourcedirs:src/main/java" "-targetdir:coveragereport" -reporttypes:Html
+C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\picocli-maven-template>reportgenerator "-reports:target/site/jacoco/jacoco.xml" "-sourcedirs:src/main/java" "-targetdir:coveragereport" -reporttypes:Html
 2023-05-24T17:26:40: Arguments
 2023-05-24T17:26:40:  -reports:target/site/jacoco/jacoco.xml
 2023-05-24T17:26:40:  -sourcedirs:src/main/java
@@ -1008,7 +1022,7 @@ C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\calculator-app>reportgen
 2023-05-24T17:26:40: Writing report file 'coveragereport\index.html'
 2023-05-24T17:26:40: Report generation took 0,2 seconds
 
-C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\calculator-app>
+C:\Users\ugur.coruh\Desktop\eclipse-java-maven-template\picocli-maven-template>
 ```
 
 ![](assets/2023-05-25-00-52-27-image.png)
@@ -1047,8 +1061,8 @@ git clone https://github.com/ucoruh/eclipse-java-maven-template.git
 echo Get the current directory
 set "currentDir=%CD%"
 
-echo Change directory to calculator-app
-cd calculator-app
+echo Change directory to picocli-maven-template
+cd picocli-maven-template
 
 echo Perform Maven clean, test, site generation, and packaging
 call mvn clean test site package
@@ -1059,8 +1073,8 @@ cd ..
 echo Generate Doxygen HTML and XML Documentation
 call doxygen Doxyfile
 
-echo Change directory to calculator-app
-cd calculator-app
+echo Change directory to picocli-maven-template
+cd picocli-maven-template
 
 echo Generate ReportGenerator HTML Report
 call reportgenerator "-reports:target/site/jacoco/jacoco.xml" "-sourcedirs:src/main/java" "-targetdir:target/site/coveragereport" -reporttypes:Html
@@ -1074,7 +1088,7 @@ cd ..
 echo Generate Doxygen Coverage Report
 
 echo Create coverxygen directory
-cd calculator-app
+cd picocli-maven-template
 cd target
 cd site
 mkdir coverxygen
@@ -1083,19 +1097,19 @@ cd ..
 cd ..
 
 echo Run Coverxygen
-call python -m coverxygen --xml-dir ./calculator-app/target/site/doxygen/xml --src-dir ./ --format lcov --output ./calculator-app/target/site/coverxygen/lcov.info --prefix %currentDir%\calculator-app\
+call python -m coverxygen --xml-dir ./picocli-maven-template/target/site/doxygen/xml --src-dir ./ --format lcov --output ./picocli-maven-template/target/site/coverxygen/lcov.info --prefix %currentDir%\picocli-maven-template\
 
 echo Run lcov genhtml
-call perl C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml ./calculator-app\target\site\coverxygen\lcov.info -o calculator-app/target/site/coverxygen
+call perl C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml ./picocli-maven-template\target\site\coverxygen\lcov.info -o picocli-maven-template/target/site/coverxygen
 
 echo Package Coverage Report-1
-call tar -czvf test-jacoco-report.tar.gz -C calculator-app/target/site/jacoco .
+call tar -czvf test-jacoco-report.tar.gz -C picocli-maven-template/target/site/jacoco .
 
 echo Package Coverage Report-2
-call tar -czvf test-coverage-report.tar.gz -C calculator-app/target/site/coveragereport .
+call tar -czvf test-coverage-report.tar.gz -C picocli-maven-template/target/site/coveragereport .
 
 echo Package Code Documentation
-call tar -czvf application-documentation.tar.gz -C calculator-app/target/site/doxygen .
+call tar -czvf application-documentation.tar.gz -C picocli-maven-template/target/site/doxygen .
 
 echo Package Product Site
 call tar -czvf application-site.tar.gz -C target/site .
@@ -1114,7 +1128,7 @@ pause
 @setlocal enableextensions
 @cd /d "%~dp0"
 
-cd calculator-app
+cd picocli-maven-template
 
 echo Run Web Site
 echo to Exit Use CTRL+Z CTRL+C
@@ -1133,7 +1147,7 @@ pause
 @cd /d "%~dp0"
 
 echo Running Application
-java -jar calculator-app/target/calculator-app-1.0-SNAPSHOT.jar
+java -jar picocli-maven-template/target/picocli-maven-template-1.0-SNAPSHOT.jar
 
 echo Operation Completed!
 pause
