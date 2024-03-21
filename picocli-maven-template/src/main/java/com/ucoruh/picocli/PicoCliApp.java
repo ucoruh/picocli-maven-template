@@ -28,10 +28,10 @@ import picocli.jansi.graalvm.AnsiConsole;
  * \startuml
  * !define COMMAND <color:RoyalBlue>
  * !define SUBCOMMAND <color:DarkOrange>
- * 
+ *
  * skinparam backgroundColor transparent
  * skinparam defaultFontName Courier
- * 
+ *
  * rectangle "<b>COMMAND</b>\nPicoCliApp" as PicoCliApp {
  *   rectangle "<b>SUBCOMMAND</b>\nRegisterUserCommand" as RegisterUser
  *   rectangle "<b>SUBCOMMAND</b>\nLoginUserCommand" as LoginUser
@@ -39,12 +39,12 @@ import picocli.jansi.graalvm.AnsiConsole;
  *   rectangle "<b>SUBCOMMAND</b>\nSearchFileCommand" as SearchFile
  *   rectangle "<b>SUBCOMMAND</b>\nSendUserMessageCommand" as SendMessage
  * }
- * 
- * PicoCliApp -[hidden]-> RegisterUser
- * PicoCliApp -[hidden]-> LoginUser
- * PicoCliApp -[hidden]-> LoginRetry
- * PicoCliApp -[hidden]-> SearchFile
- * PicoCliApp -[hidden]-> SendMessage
+ *
+ * PicoCliApp --> RegisterUser
+ * PicoCliApp --> LoginUser
+ * PicoCliApp --> LoginRetry
+ * PicoCliApp --> SearchFile
+ * PicoCliApp --> SendMessage
  * \enduml
  *
  */
