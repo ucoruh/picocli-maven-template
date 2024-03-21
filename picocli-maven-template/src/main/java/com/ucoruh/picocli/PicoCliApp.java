@@ -17,6 +17,37 @@ import picocli.CommandLine.Help.Ansi.Style;
 import picocli.CommandLine.Help.ColorScheme;
 import picocli.jansi.graalvm.AnsiConsole;
 
+/**
+ * \class PicoCliApp
+ * \brief CORUH R&D - Handles Demo operations.
+ *
+ * Detailed description of the class.
+ *
+ * Below is the WBS diagram for the PicoCliApp command hierarchy:
+ *
+ * \startuml
+ * !define COMMAND <color:RoyalBlue>
+ * !define SUBCOMMAND <color:DarkOrange>
+ * 
+ * skinparam backgroundColor transparent
+ * skinparam defaultFontName Courier
+ * 
+ * rectangle "<b>COMMAND</b>\nPicoCliApp" as PicoCliApp {
+ *   rectangle "<b>SUBCOMMAND</b>\nRegisterUserCommand" as RegisterUser
+ *   rectangle "<b>SUBCOMMAND</b>\nLoginUserCommand" as LoginUser
+ *   rectangle "<b>SUBCOMMAND</b>\nLoginUserCommandRetry" as LoginRetry
+ *   rectangle "<b>SUBCOMMAND</b>\nSearchFileCommand" as SearchFile
+ *   rectangle "<b>SUBCOMMAND</b>\nSendUserMessageCommand" as SendMessage
+ * }
+ * 
+ * PicoCliApp -[hidden]-> RegisterUser
+ * PicoCliApp -[hidden]-> LoginUser
+ * PicoCliApp -[hidden]-> LoginRetry
+ * PicoCliApp -[hidden]-> SearchFile
+ * PicoCliApp -[hidden]-> SendMessage
+ * \enduml
+ *
+ */
 @Command(name = "PicoCliApp", mixinStandardHelpOptions = true, version = "1.0", description = "CORUH R&D - Handles Demo operations.", subcommands = {
   RegisterUserCommand.class, LoginUserCommand.class, LoginUserCommandRetry.class, SearchFileCommand.class,
   SendUserMessageCommand.class
